@@ -1,0 +1,92 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Vue</title>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<style>
+			*{
+				box-sizing: border-box;
+			}
+			body{
+				margin: 40px;
+			}
+			ul{
+				list-style-type:  none;
+			}
+			.show{
+				width: 100px;
+				height: 100px;
+				background-color: pink;
+				display: inline-block;
+				padding: 15px;
+   				text-align: center;
+			}
+			.addBorder{
+				border: 3px solid deeppink;
+			}
+		</style>
+	</head>
+	<body>
+		<h3>Д.Лаврик. Стандарт ES6</h3>
+		<div id="box" class="show">Click me tree time</div>
+		<div id="box" class="show">Click me tree time</div>
+		<div id="box" class="show">Click me tree time</div>
+		<hr>
+		<div id="boy"></div>
+	</body>
+
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+
+	<script>
+		window.onload = function(){
+			//this
+			let items = document.querySelectorAll('.show');
+
+			for(let item of items){
+				item.onclick = function(e){
+					//=(e)=> не спрацює - не той контекст
+					console.log(this); //покаже контекст
+					
+					this.style.backgroundColor = 'grey';
+					this.classList.toggle('addBorder');
+				}
+			}
+			//timer(t=60) 
+			function timer(t = 60){
+				// let time = t || 60;
+				// let time = ( typeof t === "undefined") ? 60: t;
+				let time = t ;
+				console.log(time);
+			}
+			timer(5);
+			timer('');
+			timer(0);
+
+			//...marks  Спред оператор
+			function some(name, lastName, ...marks){
+				let mark = marks.reduce( (sum, current)=> sum + ', ' + current, 0);
+				let text = `${name} ${lastName}: ${mark}`;
+					console.log(text);
+					console.log(mark);
+				return text
+			}
+
+			let t = some('Piter', 'Piterson', 2, 4, 6);
+			document.getElementById('boy').innerHTML = t;
+
+			//arguments
+			function func(){
+				let a = arguments;
+				console.log(a);
+			}
+
+			func(2,3, 4, 34);
+
+		}
+
+	</script>
+</html>
